@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.17;                                        // Specifies Solidity Version.
+pragma solidity >=0.4.26;                                        // Specifies Solidity Version. Suggested by Sir :- 0.4.17, but I am using 0.4.26
 
 contract Inbox                                                  // Keyword : "Contract" is similar to Keyword : "Class" which we used while creating classes.
 {                                                               // "Contracts" are similar to "Classes" and deployed version of these contracts is similar to instarces(i.e Objects)

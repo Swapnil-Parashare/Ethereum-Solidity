@@ -1,0 +1,46 @@
+const assert = require('assert');            
+const ganache = require('ganache-cli');
+const Web3 = require('web3');                 // Constructor of web3.js
+const web3 = new Web3(ganache.provider());    // Instance of web3.js
+
+// Note : 1]Every function we called using "web3" is "Asynchronous" in nature.
+//        2]It is always going to return a "promise".
+
+
+/***********************************************  Promise Syntax  *************************************************
+beforeEach(() => {
+    
+
+    web3.eth.getAccounts()                                    // As we know this function is returning a "Promise" Object.
+    .then( (fetchedAccounts) => {                             // Here we are handling "Success" Callback.              
+        console.log(fetchedAccounts);                         // "fetchedAccounts" is actually the value with which our "Promise Object" is resolved.
+    });     
+    
+    
+})
+/********************************************************************************************************************/
+
+/*********************************************** Async-Await Syntax *************************************************/
+
+let accounts;                                                  // We are declaring this here so that its scope will be maintained for entire file.
+
+beforeEach( async () => {                                      // We are declaring our "beforeEach" callback function as "async" as we need to used 'await' inside the callback function.
+    
+    try{                                                       // 1] Javascript will wait till the Promise Object is resolved or rejected.
+        accounts = await web3.eth.getAccounts();               // 2] But await can only handle resolved promise object.
+    }                                                          // 3] Now accounts contains the value with which our Promise Object is resolved.
+    catch(err)                                                 // 4] Here we are also handling errors by using try-catch block.
+    {
+        accounts = err;
+    }        
+})
+
+
+/*********************************************************************************************************************/
+
+
+describe("Contract1 : Inbox",()=>{
+    it("Test1",() => {
+        console.log(accounts);
+    })
+})

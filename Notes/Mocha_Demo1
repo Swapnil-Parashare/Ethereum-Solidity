@@ -1,0 +1,60 @@
+const assert = require('assert');          // Built-in node modules.
+const ganache = require('ganache-cli');
+const Web3 = require('web3');              /* 1] Here "Web3" is actually a constructor. We are using it to create instances of "web3" library. Hence it is uppercase.
+                                              2] The purpose of each instance is to connect to a different "Ethereum" Network.                                                                              */
+
+
+const web3 = new Web3(ganache.provider());    // This is our instance.              
+
+/* Testing with Mocha.
+1] Mocha is a Test Running Framework.
+2] We can use it to test any type of Javascript Code. Eg :- Front-End Application, Back-End Application, Ethereum Code.
+3] Basic Mocha Funtions :- a) it         ---> To Run a test and make an assertion.
+                           b) describe   ---> To Group together "it" functions.
+                           c) beforeEach ---> To Execute some general setup code, which is common for our tests.
+*/
+
+
+/*************************************************************      DEMO        **********************************************************************/
+
+
+class Car{                                     // This is a basic Javascript Class. We will run some Mocha tests on it.
+    park()
+    {
+        return "stopped";
+    }
+    drive()
+    {
+        return "Drive!!! But with care.";
+    }
+}
+
+let car1;                                        // We are defining this variable here so that its scope will be of the entire file.
+                                                 // We will later initialize this.
+
+beforeEach(() => {                               // As we know it is used to execute some code which is comman to all our tests.
+
+        car1 = new Car();                        // Creating instance of our class. As we will we be requiring it for running our tests.
+                                                 // This code will be executed before each test. Hence 'car' will be initialized before each test.
+
+})
+
+describe('Class : Car', () => {                  // As we know 'describe' is used to group 'it' functions.
+   
+    it('Test1 : park', () => {                   // 1st 'it' function.
+   
+        assert.equal(car1.park(),"stopped");     // Using 'assert' module to compare result produces by our class object with our expected result.
+
+    });
+
+    it('Test2 : drive', () => {                  // 2nd 'it' function.
+         
+        assert.equal(car1.drive(),"Drive!!! But with care." );
+
+    });
+})
+
+/****************************************************************************************************************************************************************/
+
+
+Note : Paste it inside test>inbox.test.js  to run it.
