@@ -1,4 +1,4 @@
-# Ethereum-Solidity  
+# Smart Contract  
 Basic Ethereum Project1  
 Here I have learned how to do following stuff :-  
 1] Writing basic solidity smart contract and compiling it.  
